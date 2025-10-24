@@ -14,3 +14,7 @@ def chat(message: str):
         contents=message
     )
     return {"response": response.text}
+
+@app.get("/")
+def root():
+    return {"message": "Gemini Chatbot API is live!"}
