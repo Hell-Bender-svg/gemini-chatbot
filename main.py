@@ -7,6 +7,10 @@ app = FastAPI()
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
+@app.get("/")
+def root():
+    return {"message": "Gemini Chatbot API is live!"}
+
 @app.post("/chat")
 def chat(message: str):
     response = client.models.generate_content(
@@ -15,6 +19,3 @@ def chat(message: str):
     )
     return {"response": response.text}
 
-@app.get("/")
-def root():
-    return {"message": "Gemini Chatbot API is live!"}
